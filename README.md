@@ -12,6 +12,7 @@ This app require <br>
 Clone the  repo in your pc.
 LOGO-MAKER will ask you  questions,<br>
 which will  help to create Database
+## License
 MIT
 ## Questions
 halimshini@hotmail.com
