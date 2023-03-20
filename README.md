@@ -11,8 +11,7 @@ This app require <br>
 ## Usage 
 Clone the  repo in your pc.
 LOGO-MAKER will ask you  questions,<br>
-which will  help to create Database.svg
-## License
+which will  help to create Database
 MIT
 ## Questions
 halimshini@hotmail.com
