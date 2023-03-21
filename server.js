@@ -107,12 +107,84 @@ function question() {
                     .then((answers) => {
                         const { roleName,salaryRole,department } = answers;
                         
-                    db.query(`INSERT INTO  role (title,salary,department_id) VALUE (roleName,salaryRole,department)`,(err, results) => {
+                    db.query(`INSERT INTO  role (title,salary,department_id) VALUE (?,?,?)`,roleName,salaryRole,department,(err, results) => {
                             if (err) {
                                 console.log(err)
                             }
                             else {
-                                console.table('Added ' + " " + `${title}` + 'to the database ')
+                                console.table('Added ' + " " + `${roleName}` + 'to the database ')
+                                question()
+                            }
+                        })
+
+                    })
+            }
+            //Add Employee
+            if(answers.question === "add an employee"){
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "What is  name of employee?",
+                        name: "employeeName"
+                    },
+                    {
+                        type: "input",
+                        message: "What is the lastname  of employee?",
+                        name: "employeeLastName"
+                    },
+                    {
+                        type: "list",
+                        message: "What is Employee role?",
+                        choices:['Sales Lead','Salesperson','Lead Engineer','Software Engineer',"Account Manager",'Accountant',"Legal Team Lead",'Lawyer'],
+                        name: "employeeRole"
+                    },
+                    {
+                        type: "list",
+                        message: "Who is the employee manager?",
+                        choices:['','','',''],
+                        name: "department"
+                    }
+                ])
+                    .then((answers) => {
+                        const { employeeName,employeeLastName,employeeRole } = answers;
+                        
+                        db.query(`INSERT INTO  role () VALUE (?,?,?)`,(err, results) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            else {
+                                console.table('Added ' + " " + `${roleName}` + 'to the database ')
+                                question()
+                            }
+                        })
+
+                    })
+            }
+            //update employee
+            if(answers.question === "update an employee role"){
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "Which  employee role do you want to update?",
+                        name: "employeeName"
+                    },
+                    {
+                        type: "list",
+                        message: "Which role do you want to assing the selected employee?",
+                        choices:['Sales Lead','Salesperson','Lead Engineer','Software Engineer',"Account Manager",'Accountant',"Legal Team Lead",'Lawyer'],
+                        name: "assingRole"
+                    },
+                   
+                ])
+                    .then((answers) => {
+                        const { employeeName,employeeLastName,employeeRole } = answers;
+                        
+                        db.query(`INSERT INTO  role () VALUE (?,?,?)`,(err, results) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            else {
+                                console.table("updated employee's role")
                                 question()
                             }
                         })
