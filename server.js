@@ -34,20 +34,19 @@ function question() {
                     else {
                         console.table(results)
                         question()
-                            
+
                     }
 
                 })
 
             }
-            // 
 
             if (answers.choices === "view all roles") {
                 db.query(`SELECT * FROM role `, (err, results) => {
                     if (err) {
                         console.log(err)
                     }
-                    console.log(results)
+                    console.table(results)
                     question()
                 })
             }
@@ -57,19 +56,74 @@ function question() {
                     if (err) {
                         console.log(err)
                     }
-                    console.log(results)
+                    console.table(results)
                     question()
                 })
             }
+                //add  a new department to department table
+            if (answers.choices === "add a department") {
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "What is the name of Department?",
+                        name: "department"
+                    },
+                ])
+                    .then((answers) => {
+                        const { department } = answers;
 
-            if(answers.choices === "add a department"){
-                db.query(``)
+                        db.query(`INSERT INTO  department (department_names) VALUE (?)`, department, (err, results) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            else {
+                                console.table('Added ' + " " + `${department}` + 'to the database ')
+                                question()
+                            }
+                        })
+
+                    })
             }
+            //Add new role    to table role
+            if (answers.choices === "add a role") {
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "What is the name of role?",
+                        name: "roleName"
+                    },
+                    {
+                        type: "input",
+                        message: "What is the salary  of role?",
+                        name: "salaryRole"
+                    },
+                    {
+                        type: "list",
+                        message: "Which department does the role belong to?",
+                        choices:['Engineering','Finance','Legal','Sales'],
+                        name: "department"
+                    }
+                ])
+                    .then((answers) => {
+                        const { roleName,salaryRole,department } = answers;
+                        
+                    db.query(`INSERT INTO  role (title,salary,department_id) VALUE (roleName,salaryRole,department)`,(err, results) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            else {
+                                console.table('Added ' + " " + `${title}` + 'to the database ')
+                                question()
+                            }
+                        })
+
+                    })
+            }
+
         })
-    .catch((error) => {
+        .catch((error) => {
             console.log(error)
-        }
-        )
+        })
 };
 
 
