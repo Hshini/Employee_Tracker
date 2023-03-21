@@ -13,7 +13,7 @@ const db = mysql.createConnection({
 },
 );
 
-const questions=[
+const questions = [
     {
         type: "list",
         message: "What would you like to do?",
@@ -21,38 +21,62 @@ const questions=[
         name: 'choices'
     }
 ]
-inquirer
-    .prompt(questions)
-    .then((answers) => {
+function question() {
+    inquirer.prompt(questions)
+        .then((answers) => {
 
-        if (answers.choices === "view all departments") {
-            db.query(`SELECT * FROM department `, (err, results) => {
+            if (answers.choices === "view all departments") {
+                db.query(`SELECT * FROM department `, (err, results) => {
 
-                if (err) {
-                    console.log(err)
-                }
-                console.log(results)
-            },
-            
-            )
-           
-        }
-        if (answers.choices === "view all roles") {
-            db.query(`SELECT * FROM roles `, (error, results) => {
-                console.log(results)
-            })
-        }
+                    if (err) {
+                        console.log(err)
+                    }
+                    else {
+                        console.table(results)
+                        question()
+                            
+                    }
 
-        if (answers.choices === "view all employees") {
-            db.query(`SELECT * FROM employee`, (error, results) => {
-                console.log(results)
-            })
-        }
-        
-    })
+                })
 
+            }
+            // 
+
+            if (answers.choices === "view all roles") {
+                db.query(`SELECT * FROM role `, (err, results) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                    console.log(results)
+                    question()
+                })
+            }
+
+            if (answers.choices === "view all employees") {
+                db.query(`SELECT * FROM employee`, (err, results) => {
+                    if (err) {
+                        console.log(err)
+                    }
+                    console.log(results)
+                    question()
+                })
+            }
+
+            if(answers.choices === "add a department"){
+                db.query(``)
+            }
+        })
     .catch((error) => {
-        console.log(error)
-    }
-    );
+            console.log(error)
+        }
+        )
+};
+
+
+question();
+
+
+
+
+
 
