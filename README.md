@@ -3,7 +3,7 @@
 
 ## Description
 
-Employee_Tracker database is a digital record of employees.<br> Database include contact information, job titles, payroll data, and other information related to employment.
+Employee_Tracker database is a digital record of employees.<br> Database include contact information, job titles, payroll data, and other information related to employee.
 ## Installation 
 This app require <br>
 [ MySQL2 package](https://www.npmjs.com/package/mysql2)<br>
@@ -12,7 +12,7 @@ This app require <br>
 
 ## Usage 
 Clone the  repo in your pc.
-LOGO-MAKER will ask you  questions,<br>
+Employee Tracker app will ask you  questions,<br>
 which will  help to create Database
 ## License
 MIT
