@@ -3,7 +3,7 @@
 
 ## Description
 
-Employee_Tracker database is a digital record of employees.<br> Database include contact information, job titles, payroll data, and other information related to employment.
+Employee_Tracker database is a digital record of employees.<br> Database include contact information, job titles, payroll data, and other information related to employee.
 ## Installation 
 This app require <br>
 [ MySQL2 package](https://www.npmjs.com/package/mysql2)<br>
