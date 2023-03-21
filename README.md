@@ -12,7 +12,7 @@ This app require <br>
 
 ## Usage 
 Clone the  repo in your pc.
-LOGO-MAKER will ask you  questions,<br>
+Employee Tracker app will ask you  questions,<br>
 which will  help to create Database
 ## License
 MIT
