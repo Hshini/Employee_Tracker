@@ -99,22 +99,19 @@ function question() {
                     },
                     {
                         type: "list",
-                        message: "Which department does the role belong to?",
-                        choices:['Engineering','Finance','Legal','Sales'],
-                        name: "department"
+                        message: "Which department does the role belong to? Chose 1 for:Engineering, 2 for Finance,3 for Legal,4 for Sales",
+                        choices:["1","2","3","4"],
+                        name: "departmentsRole"
                     }
                 ])
                     .then((answers) => {
-                        const { roleName,salaryRole,department } = answers;
-                        
-                    db.query(`INSERT INTO  role (title,salary,department_id) VALUE (?,?,?)`,roleName,salaryRole,department,(err, results) => {
+                        const { roleName,salaryRole,departmentsRole} = answers;                           
+                    db.query(`INSERT INTO  role(title,salary,department_id) VALUES ("${roleName}",${salaryRole},${departmentsRole})`,(err, results) => {
                             if (err) {
                                 console.log(err)
                             }
-                            else {
                                 console.table('Added ' + " " + `${roleName}` + 'to the database ')
                                 question()
-                            }
                         })
 
                     })
@@ -141,6 +138,7 @@ function question() {
                     {
                         type: "list",
                         message: "Who is the employee manager?",
+                        message: "Who is the employee manager?",
                         choices:['','','',''],
                         name: "department"
                     }
@@ -153,7 +151,7 @@ function question() {
                                 console.log(err)
                             }
                             else {
-                                console.table('Added ' + " " + `${roleName}` + 'to the database ')
+                             
                                 question()
                             }
                         })
