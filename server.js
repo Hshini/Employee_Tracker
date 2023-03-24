@@ -84,7 +84,7 @@ function question() {
 
                     })
             }
-            //Add new role    to table role
+            //Add new role  to table role
             if (answers.choices === "add a role") {
                 inquirer.prompt([
                     {
@@ -117,7 +117,7 @@ function question() {
                     })
             }
             //Add Employee
-            if(answers.question === "add an employee"){
+            if(answers.choices === "add an employee"){
                 inquirer.prompt([
                     {
                         type: "input",
@@ -131,40 +131,40 @@ function question() {
                     },
                     {
                         type: "list",
-                        message: "What is Employee role?",
-                        choices:['Sales Lead','Salesperson','Lead Engineer','Software Engineer',"Account Manager",'Accountant',"Legal Team Lead",'Lawyer'],
+                        message: "What is Employee role? Chose 1 :Sales Lead,  2 for:Salesperson,3 for:Lead Engineer,4 for:Software Engineer,5 for:Account Manager,6 for:Accountant,7 for: Legal Team Lead, 8 for:Lawyer ",
+                        choices:[1,2,3,4,5,6,7,8],
                         name: "employeeRole"
                     },
                     {
                         type: "list",
-                        message: "Who is the employee manager?",
-                        message: "Who is the employee manager?",
-                        choices:['','','',''],
-                        name: "department"
+                        message: "Who is the employee manager? Chose 1  for:John Doe, 2 for :Mike Chan,3 for:Kevin Tupik,4 for:Kunal Singh, 5 for:Malia Brown",
+                        choices:[1,2,3,4,5],
+                        name: "employeeManager"
                     }
                 ])
                     .then((answers) => {
-                        const { employeeName,employeeLastName,employeeRole } = answers;
+                        const { employeeName,employeeLastName,employeeRole,employeeManager} = answers;
                         
-                        db.query(`INSERT INTO  role () VALUE (?,?,?)`,(err, results) => {
+                        db.query(`INSERT INTO  role (first_name,last_name,role_id,manager_id) VALUES
+                         ("${employeeName}","${employeeLastName}",${employeeRole},${employeeManager})`,(err, results) => {
                             if (err) {
                                 console.log(err)
                             }
-                            else {
-                             
+                           
+                            console.table('Added ' + " " + `${employeeName}` + 'to the database ')
                                 question()
-                            }
+                            
                         })
 
                     })
             }
             //update employee
-            if(answers.question === "update an employee role"){
+            if(answers.choices === "update an employee role"){
                 inquirer.prompt([
                     {
                         type: "input",
                         message: "Which  employee role do you want to update?",
-                        name: "employeeName"
+                        name: "employeeUpdate"
                     },
                     {
                         type: "list",
@@ -175,7 +175,7 @@ function question() {
                    
                 ])
                     .then((answers) => {
-                        const { employeeName,employeeLastName,employeeRole } = answers;
+                        const { employeeUpdate,assingRole,} = answers;
                         
                         db.query(`INSERT INTO  role () VALUE (?,?,?)`,(err, results) => {
                             if (err) {
@@ -189,7 +189,6 @@ function question() {
 
                     })
             }
-
         })
         .catch((error) => {
             console.log(error)
