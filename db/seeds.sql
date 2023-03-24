@@ -15,10 +15,12 @@ INSERT INTO role  (title,salary,department_id)
                    ("Legal Team Lead",125000,3),
                    ("Lawyer",190000,3);
 
-INSERT INTO employee  (first_name,last_name)           
-            VALUES ("John","Doe"),
-                   ("Mike","Chan"),
-                   ("Ashley","Rodriguez"),
-                   ("Kevin","Tupik"),
-                   ("Kunal","Singh"),
-                   ("Malia","Brown");
+INSERT INTO employee  (first_name,last_name,role_id,manager_id)           
+            VALUES ("John","Doe",1,NULL),
+                   ("Mike","Chan",2,1),
+                   ("Ashley","Rodriguez",3,NULL),
+                   ("Kevin","Tupik",4,3),
+                   ("Kunal","Singh",5,NULL),
+                   ("Malia","Brown",6,5),
+                   ("Sarah","Lourd",7,NULL),
+                   ("Tom","Allen",8,7);
