@@ -13,8 +13,8 @@ This app require <br>
 ## Usage 
 Clone the  repo in your pc.
 Employee Tracker app will ask you  questions,<br>
-which will  help to create Database
-![All Roles](http://url/to/img.png)
+which will  help to create Database<br>
+![All Roles](./assets/images/roles.png)
 ## License
 MIT
 ## Questions
