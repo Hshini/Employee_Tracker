@@ -1,3 +1,4 @@
+
 INSERT INTO department (department_names)
                VALUES  ("Engineering"),
                        ("Finance"),

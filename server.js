@@ -42,7 +42,8 @@ function question() {
             }
 
             if (answers.choices === "view all roles") {
-                db.query(`SELECT * FROM role `, (err, results) => {
+                db.query(`SELECT role.id,role.title,
+                role.salary , department_names AS department FROM role LEFT JOIN department ON role.department_id = department.id`, (err, results) => {
                     if (err) {
                         console.log(err)
                     }
@@ -52,7 +53,8 @@ function question() {
             }
 
             if (answers.choices === "view all employees") {
-                db.query(`SELECT * FROM employee`, (err, results) => {
+                db.query(`SELECT * FROM employee`
+                , (err, results) => {
                     if (err) {
                         console.log(err)
                     }
@@ -99,7 +101,7 @@ function question() {
                     },
                     {
                         type: "list",
-                        message: "Which department does the role belong to? Chose 1 for:Engineering, 2 for Finance,3 for Legal,4 for Sales",
+                        message: "Which department does the role belong to? Choose 1 for:Engineering, 2 for Finance,3 for Legal,4 for Sales",
                         choices:["1","2","3","4"],
                         name: "departmentsRole"
                     }
@@ -131,21 +133,21 @@ function question() {
                     },
                     {
                         type: "list",
-                        message: "What is Employee role? Chose 1 :Sales Lead,  2 for:Salesperson,3 for:Lead Engineer,4 for:Software Engineer,5 for:Account Manager,6 for:Accountant,7 for: Legal Team Lead, 8 for:Lawyer ",
+                        message: "What is Employee role? Choose 1 :Sales Lead,  2 for:Salesperson,3 for:Lead Engineer,4 for:Software Engineer,5 for:Account Manager,6 for:Accountant,7 for: Legal Team Lead, 8 for:Lawyer ",
                         choices:[1,2,3,4,5,6,7,8],
                         name: "employeeRole"
                     },
                     {
                         type: "list",
-                        message: "Who is the employee manager? Chose 1  for:John Doe, 2 for :Mike Chan,3 for:Kevin Tupik,4 for:Kunal Singh, 5 for:Malia Brown",
-                        choices:[1,2,3,4,5],
+                        message: "Who is the employee manager? Choose 1 for :Mike Chan,3 for:Kevin Tupik, 5 for:Malia Brown, 7 for :Tom Allen" ,
+                        choices:[1,3,5,7],
                         name: "employeeManager"
                     }
                 ])
                     .then((answers) => {
                         const { employeeName,employeeLastName,employeeRole,employeeManager} = answers;
                         
-                        db.query(`INSERT INTO  role (first_name,last_name,role_id,manager_id) VALUES
+                        db.query(`INSERT INTO  employee (first_name,last_name,role_id,manager_id) VALUES
                          ("${employeeName}","${employeeLastName}",${employeeRole},${employeeManager})`,(err, results) => {
                             if (err) {
                                 console.log(err)
@@ -168,8 +170,8 @@ function question() {
                     },
                     {
                         type: "list",
-                        message: "Which role do you want to assing the selected employee?",
-                        choices:['Sales Lead','Salesperson','Lead Engineer','Software Engineer',"Account Manager",'Accountant',"Legal Team Lead",'Lawyer'],
+                        message: "Which role do you want to assing the selected employee?, choose 1 for: Sales Lead ,2 for Salesperson,3 for: Lead Engineer,4 for: Software Engineer,5 for: Account Manager, 6 for: Accountant, 7 for: Legal Team Lead, 8 for :Lawyer ",
+                        choices:[1,2,3,4,5,6,7,8],
                         name: "assingRole"
                     },
                    
@@ -177,7 +179,7 @@ function question() {
                     .then((answers) => {
                         const { employeeUpdate,assingRole,} = answers;
                         
-                        db.query(`INSERT INTO  role () VALUE (?,?,?)`,(err, results) => {
+                        db.query(`INSERT INTO  employee () VALUE (?,?,?)`,(err, results) => {
                             if (err) {
                                 console.log(err)
                             }
