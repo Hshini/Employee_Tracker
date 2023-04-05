@@ -14,6 +14,7 @@ This app require <br>
 Clone the  repo in your pc.
 Employee Tracker app will ask you  questions,<br>
 which will  help to create Database<br>
+[Video-Guide](https://watch.screencastify.com/v/Oc8o0zFMaMe8BuN4KHjj)<br>
 ![All Roles](./assets/images/roles.png)
 ## License
 MIT
